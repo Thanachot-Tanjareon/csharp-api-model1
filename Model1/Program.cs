@@ -1,3 +1,5 @@
+using Model1.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
+app.MapGet("/ping", (MapDbContext db) => db.Users.Count());
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
